@@ -1,0 +1,105 @@
+﻿@model ML.Doctor
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Doctor</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("Form", "Doctor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Id_Doctor, new { @class = "hidden" })
+                            @Html.TextBoxFor(model => model.Id_Doctor, new { @class = "hidden form-control" })
+                            @Html.ValidationMessageFor(model => model.Id_Doctor)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Nombre)
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = " form-control", @id = "txtNombre", @onkeypress = "return SoloLetras(event,'lblNombre')" })
+                            @Html.ValidationMessageFor(model => model.Nombre)
+                            @Html.Label("", null, new { @id = "lblNombre" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+
+
+                            @Html.LabelFor(model => model.ApellidoPaterno)
+                            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @onkeypress = "return SoloLetras(event,'lblApellidoPaterno')" })
+                            @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+                            @Html.Label("", null, new { @id = "lblApellidoPaterno" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ApellidoMaterno)
+                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @onkeypress = "return SoloLetras(event,'lblApellidoMaterno')" })
+                            @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+                            @Html.Label("", null, new { @id = "lblApellidoMaterno" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Cedula)
+                            @Html.TextBoxFor(model => model.Cedula, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Cedula)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Fotografia)
+                            @Html.TextBoxFor(model => model.Fotografia, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Fotografia)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Especialidad.Id_Especialidad)
+                            @*@Html.TextBoxFor(model => model.Rol.IdRol, new { @class = "form-control" })*@
+                            @Html.DropDownListFor(model => model.Especialidad.Id_Especialidad, new SelectList(Model.Especialidad.Especialidades, "Id_Especialidad", "Descripcion"), "Selecciona una especialidad", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Especialidad.Id_Especialidad)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-3">
+
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+
+                            @Html.ActionLink("Regresar", "GetAll", "Doctor", htmlAttributes: new { @class = "btn btn-danger" })
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,75 @@
+﻿@model ML.Cita
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("INICIO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Paciente", "GetAll", "Paciente")</li>
+                <li>@Html.ActionLink("Doctor", "GetAll", "Doctor")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Citas</h2>
+    <div class="row">
+        <div style="float:left">
+            @Html.ActionLink("Agregar Cita", "Form", "Cita", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+
+                    <th> <center>Editar </center></th>
+
+                    <th> <center>Fecha Cita </center></th>
+                    <th> <center>Hora Cita </center></th>
+                    <th> <center>Medico </center></th>
+                    <th> <center>Paciente </center></th>
+                    <th> <center>Eliminar </center></th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.Cita cita in Model.Citas)
+                {
+                    <tr>
+
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Cita", new { Id_Cita = cita.Id_Cita })"><i class="bi bi-pencil-square" style="color: ivory"></i></a></td>
+                        <td style="display :none;">@cita.Id_Cita </td>
+                        <td> <center>@cita.FechaCita </center></td>
+                        <td> <center>@cita.HoraCita </center></td>
+                        <td style="display :none;">@cita.Doctor.Id_Doctor </td>
+                        <td> <center>@cita.Doctor.Nombre  @cita.Doctor.ApellidoPaterno </center></td>
+                        <td style="display :none;">@cita.Paciente.Id_Paciente </td>
+                        <td> <center>@cita.Paciente.Nombre  @cita.Paciente.ApellidoMaterno </center></td>
+
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Cita", new { Id_Cita = cita.Id_Cita})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

@@ -1,0 +1,96 @@
+﻿@model ML.Doctor
+
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+<div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        @Html.ActionLink("INICIO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    </div>
+<div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Paciente", "GetAll", "Paciente")</li>
+        <li>@Html.ActionLink("Cita", "GetAll", "Cita")</li>
+    </ul>
+</div>
+</div>
+</div>
+
+
+
+<div class="container">
+    <h2>Doctores</h2>
+    <div class="row">
+        <div style="float:left">
+            @Html.ActionLink("Agregar Doctor", "Form", "Doctor", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+
+                    <th> <center>Editar </center></th>
+
+
+                    <th> <center>Id Doctor </center></th>
+                    <th> <center>Nombre </center></th>
+                    <th> <center>Fotografia </center></th>
+                    <th> <center>Cedula </center></th>
+                    <th> <center>Especialidad </center></th>
+                    <th> <center>Eliminar </center></th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.Doctor doctor in Model.Doctores)
+                {
+                    <tr>
+
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Doctor", new { Id_Doctor = doctor.Id_Doctor })"><span class="glyphicon glyphicon-pencil" style="color: ivory"></span></a></td>
+                        <td><center>@doctor.Id_Doctor </center></td>
+                        <td> <center>@doctor.Nombre  @doctor.ApellidoPaterno @doctor.ApellidoMaterno   </center></td>
+                        <td> <center>@doctor.Fotografia </center></td>
+                        <td> <center>@doctor.Cedula </center></td>
+                        <td class="hidden"> <center>@doctor.Especialidad.Id_Especialidad </center></td>
+                        <td> <center>@doctor.Especialidad.Descripcion </center></td>
+
+                        @*<td>
+                                <center>
+
+                                    @if (doctor.Fotografia != null)
+                                    {
+
+                                        <img id="Img" src="data:image/*;base64,@doctor.Fotografia" style="width:150px ; height:150px" />
+
+                                    }
+                                    else
+                                    {
+                                        <img id="Img" src="~/App_Data/UserDefault.png" style="width:100px ; height:100px" />
+                                    }
+                                </center>
+                            </td>*@
+
+
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Doctor", new { Id_Doctor= doctor.Id_Doctor})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+

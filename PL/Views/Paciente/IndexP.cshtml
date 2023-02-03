@@ -1,0 +1,238 @@
+﻿@model ML.Paciente
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <h2 class="text-center"> Listado de <span class="text-primary">Pacientes</span> </h2>
+    <hr />
+</div>
+
+<section class="resume-section" id="education">
+
+    <div class="container center-block">
+
+        <div class="row">
+            <div class="col-auto ms-auto">
+                <button class="btn btn-primary" onclick="Modal(null)" style="color: ivory">
+                    <i class="fa-solid fa-user-plus fa-beat"></i>
+                    Agregar Nuevo
+                </button>
+            </div>
+        </div>
+
+        <p></p>
+
+
+        <div class="container">
+            <h2>Paciente</h2>
+
+            <div class="row">
+                <div style="float:left">
+                    @Html.ActionLink("Agregar Paciente", "Form", "Paceinte", htmlAttributes: new { @class = "btn btn-success" })
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+
+                            <th> <center>Editar </center></th>
+
+                            <th> <center>Nombre </center></th>
+                            <th> <center>Feccha de Nacimiento </center></th>
+                            <th> <center>CURP </center></th>
+                            <th> <center>NSS </center></th>
+                            <th> <center>Sexo </center></th>
+                            <th> <center>Telefono </center></th>
+                            <th> <center>Direccion </center></th>
+                            <th> <center>Codigo Postal </center></th>
+                            <th> <center>Diagnostico </center></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ML.Paciente paciente in Model.Pacientes)
+                        {
+                            <tr>
+
+                                <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Paciente", new { Id_Paciente = paciente.Id_Paciente })"><i class="bi bi-pencil-square" style="color: ivory"></i></a></td>
+                                <td style="display :none;">@paciente.Id_Paciente </td>
+                                <td> <center>@paciente.Nombre @paciente.ApellidoPaterno @paciente.ApellidoMaterno </center></td>
+                                <td> <center>@paciente.FechaNacimiento </center></td>
+                                <td> <center>@paciente.CURP </center></td>
+                                <td> <center>@paciente.NSS </center></td>
+                                <td> <center>@paciente.Sexo </center></td>
+                                <td> <center>@paciente.Telefono </center></td>
+                                <td> <center>@paciente.Direccion </center></td>
+                                <td> <center>@paciente.CodigoPostal </center></td>
+                                <td> <center>@paciente.Diagnostico </center></td>
+
+
+                                <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Paciente", new { Id_Paciente= paciente.Id_Paciente})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</section>
+
+
+
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-body text-center pb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <!-- Portfolio Modal - Title-->
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Formulario de <span class="text-primary">Pacientes</span></h2>
+
+                            <!-- Icon Divider-->
+                            <div class="divider-custom">
+                                <div class="divider-custom-icon"><i class="fa-solid fa-users-rectangle fa-2x" style="color: #efa72a"></i></div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 col-xl-7">
+                                    <!-- to get an API token!-->
+                                    @*  <form id="contactForm" data-sb-form-api-token="API_TOKEN">*@
+
+                                    @using (Html.BeginForm("Formulario", "Alumno", FormMethod.Post, new { enctype = "multipart/form-data", @id = "contactForm" }))
+                                    {
+
+                                        <div class="form-floating mb-3" style="display:none">
+                                            @*<input class="form-control" id="nombre" type="text" placeholder="Habid..." data-sb-validations="required" />*@
+
+                                            @Html.TextBoxFor(model => model.IdAlumno, new { @class = "form-control", @id = "txtIdAlumno" })
+                                            <label for="name">IdAlumno</label>
+
+                                        </div>
+                                        <!-- Nombre input-->
+                                        <div class="form-floating mb-3">
+                                            @*<input class="form-control" id="nombre" type="text" placeholder="Habid..." data-sb-validations="required" />*@
+
+                                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @onkeypress = "return SoloLetras(event,'lblNombre')" })
+
+                                            <label for="name">Nombre</label>
+                                            @Html.Label("", null, new { @id = "lblNombre", @style = "display: block;" })
+                                        </div>
+                                        <!-- Apellido Paterno input-->
+                                        <div class="form-floating mb-3">
+                                            @* <input class="form-control" id="AP" type="email" placeholder="Lopez" data-sb-validations="required,email" />*@
+
+                                            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtAP", @type = "text", @onkeypress = "return SoloLetras(event,'lblAP')" })
+                                            <label for="email">Apellido Paterno </label>
+                                            @Html.Label("", null, new { @id = "lblAP", @style = "display: block;" })
+                                        </div>
+                                        <!-- Apellido Materno input-->
+                                        <div class="form-floating mb-3">
+                                            @*<input class="form-control" id="AM" type="tel" placeholder="Lopez" data-sb-validations="required" />*@
+
+                                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtAM", @onkeypress = "return SoloLetras(event,'lblAM')" })
+                                            <label for="phone">Apellido Materno</label>
+                                            @Html.Label("", null, new { @id = "lblAM", @style = "display: block;" })
+                                        </div>
+                                        <!-- Imagen input-->
+                                        <div class="form-floating mb-3">
+                                            @*<textarea class="form-control" id="Imagen" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>*@
+                                            @*   @Html.LabelFor(model=> model.Imagen)*@
+
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-image"></i></span>
+                                                <input id="IFImagen" type='file' class="form-control" name="IFImagen" onchange="validateFile(this), readURL(this);  " />
+                                            </div>
+
+                                            @if (Model.Imagen != null)
+                                            {
+                                                <img id="ImagenPreview" src="data:image/*;base64,@Model.Imagen" style="width:100px ; height:100px" />
+
+                                            }
+                                            else
+                                            {
+                                                <img id="ImagenPreview" src="~/assets/img/NoAlumno.jpg" style="width:100px ; height:100px" />
+                                            }
+
+                                            @Html.ValidationMessageFor(model => model.Imagen)
+                                            @Html.HiddenFor(model => model.Imagen)
+
+                                            <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                        </div>
+
+                                        <button class="btn btn-primary" id="submitButton" type="submit" data-bs-dismiss="modal">
+                                            <i class="fa-solid fa-check-to-slot"></i>
+
+                                            Agregar
+                                        </button>
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <i class="fa-regular fa-rectangle-xmark"></i>
+
+                                            Cerrar
+                                        </button>
+                                    }
+                                    @*</form>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+    {
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+
+        function Modal(IdAlumno) {
+
+
+                if (IdAlumno != null) {
+
+                    $.ajax({
+                        url: 'http://localhost:5051/Alumno/Formulario',
+                        data: { IdAlumno: IdAlumno },
+                        success: function (result) {
+
+                        $('#txtIdAlumno').val(result.idAlumno);
+                        $('#txtNombre').val(result.nombre);
+                        $('#txtAP').val(result.apellidoPaterno);
+                        $('#txtAM').val(result.apellidoMaterno);
+                        var image = new Image();
+                        image.src = 'data:image/*;'+ result.imagen +';'
+
+                        //$('#ImagenPreview').val(result.imagen);
+
+
+                        $('#portfolioModal1').modal('show');
+
+                        }
+
+                    })
+
+
+                } else {
+                    $('#portfolioModal1').modal('show');
+                }
+
+
+        }
+
+    </script>
+
+
+
+
+}

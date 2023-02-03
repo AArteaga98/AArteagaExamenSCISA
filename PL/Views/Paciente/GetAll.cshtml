@@ -1,0 +1,83 @@
+﻿@model ML.Paciente
+
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("INICIO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Doctor", "GetAll", "Doctor")</li>
+                <li>@Html.ActionLink("Cita", "GetAll", "Cita")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <h2>Paciente</h2>
+
+    <div class="row">
+        <div style="float:left">
+            @Html.ActionLink("Agregar Paciente", "Form", "Paceinte", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+
+                    <th> <center>Editar </center></th>
+
+                    <th> <center>Nombre </center></th>
+                    <th> <center>Feccha de Nacimiento </center></th>
+                    <th> <center>CURP </center></th>
+                    <th> <center>NSS </center></th>
+                    <th> <center>Sexo </center></th>
+                    <th> <center>Telefono </center></th>
+                    <th> <center>Direccion </center></th>
+                    <th> <center>Codigo Postal </center></th>
+                    <th> <center>Diagnostico </center></th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.Paciente paciente in Model.Pacientes)
+                {
+                    <tr>
+
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Paciente", new { Id_Paciente = paciente.Id_Paciente })"><span class="glyphicon glyphicon-pencil" style="color: ivory"></span></a></td>
+                        <td style="display :none;">@paciente.Id_Paciente </td>
+                        <td> <center>@paciente.Nombre @paciente.ApellidoPaterno @paciente.ApellidoMaterno </center></td>
+                        <td> <center>@paciente.FechaNacimiento </center></td>
+                        <td> <center>@paciente.CURP </center></td>
+                        <td> <center>@paciente.NSS </center></td>
+                        <td> <center>@paciente.Sexo </center></td>
+                        <td> <center>@paciente.Telefono </center></td>
+                        <td> <center>@paciente.Direccion </center></td>
+                        <td> <center>@paciente.CodigoPostal </center></td>
+                        <td> <center>@paciente.Diagnostico </center></td>
+
+
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Paciente", new { Id_Paciente= paciente.Id_Paciente})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

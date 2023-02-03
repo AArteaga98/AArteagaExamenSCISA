@@ -1,0 +1,90 @@
+﻿@model ML.Cita
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CITA</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("Form", "Cita", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Id_Cita, new { @class = "hidden" })
+                            @Html.TextBoxFor(model => model.Id_Cita, new { @class = "hidden form-control" })
+                            @Html.ValidationMessageFor(model => model.Id_Cita)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FechaCita)
+                            @Html.TextBoxFor(model => model.FechaCita, new { @class = " form-control" })
+                            @Html.ValidationMessageFor(model => model.FechaCita)
+                            @Html.Label("", null, new { @id = "lblFecha" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+
+
+                            @Html.LabelFor(model => model.HoraCita)
+                            @Html.TextBoxFor(model => model.HoraCita, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.HoraCita)
+                            @Html.Label("", null, new { @id = "lblHora" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Doctor.Id_Doctor)
+                            @Html.DropDownListFor(model => model.Doctor.Id_Doctor, new SelectList(Model.Doctor.Doctores, "Id_Doctor", "NombreCompleto"), "Selecciona el Nombre del Doctor", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Doctor.Id_Doctor)
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Paciente.Id_Paciente)
+                            @Html.DropDownListFor(model => model.Paciente.Id_Paciente, new SelectList(Model.Paciente.Pacientes, "Id_Paciente", "NombreCompleto"), "Selecciona el Nombre del Paciente", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Paciente.Id_Paciente)
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-3">
+
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+
+                            @Html.ActionLink("Regresar", "GetAll", "Cita", htmlAttributes: new { @class = "btn btn-danger" })
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fd097353cf524f65b91610f3a84f6162" Name="Diagram1">
+        <EntityTypeShape EntityType="AArteagaExamenSCISAModel.Cita" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AArteagaExamenSCISAModel.Doctor" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AArteagaExamenSCISAModel.Especialidad" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AArteagaExamenSCISAModel.Paciente" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="AArteagaExamenSCISAModel.FK__Cita__Id_Doctor__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="AArteagaExamenSCISAModel.FK__Cita__Id_Pacient__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="AArteagaExamenSCISAModel.FK__Doctor__Id_Espec__35BCFE0A" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AArteagaExamenSCISAModel.Usuario" Width="1.5" PointX="5.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
