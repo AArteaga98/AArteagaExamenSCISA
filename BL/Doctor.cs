@@ -84,8 +84,8 @@ namespace BL
             {
                 result.Correct = false;
                 result.Ex = ex;
-                result.Message = "Ocurrio un error al agregar Doctor" + result.Ex;
-               
+                result.Message = ex.InnerException.ToString();
+
             }
             return result;
         }
@@ -124,7 +124,7 @@ namespace BL
             catch (Exception ex)
             {
                 result.Correct = false;
-                result.Message = ex.Message;
+                result.Message = ex.InnerException.ToString();
                 result.Ex = ex;
                
             }
@@ -151,8 +151,8 @@ namespace BL
             {
                 result.Correct = false;
                 result.Ex = ex;
-                result.Message = "Ocurrio un error al modificar Doctor" + result.Ex;
-                
+                result.Message = ex.InnerException.ToString();
+
             }
             return result;
         }

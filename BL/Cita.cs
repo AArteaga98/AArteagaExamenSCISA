@@ -56,7 +56,7 @@ namespace BL
             catch (Exception ex)
             {
                 result.Correct = false;
-                result.Message = ex.Message;
+                result.Message = ex.InnerException.ToString();
 
             }
             return result;
@@ -128,7 +128,7 @@ namespace BL
             {
                 result.Correct = false;
                 result.Ex = ex;
-                result.Message = "Ocurrio un error al agregar cita" + result.Ex;
+                result.Message = ex.InnerException.ToString();
                 throw;
             }
             return result;
@@ -154,7 +154,7 @@ namespace BL
             {
                 result.Correct = false;
                 result.Ex = ex;
-                result.Message = "Ocurrio un error al modificar la cita" + result.Ex;
+                result.Message = ex.InnerException.ToString();
 
             }
             return result;

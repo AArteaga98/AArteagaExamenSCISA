@@ -80,7 +80,7 @@ namespace BL
             {
                 result.Correct= false;
                 result.Ex= ex;
-                result.Message = ex.Message;
+                result.Message = ex.InnerException.ToString();
                 
             }
             return result;
@@ -153,8 +153,8 @@ namespace BL
             {
                 result.Correct = false;
                 result.Ex = ex;
-                result.Message = "Ocurrio un error al modificar paciente" + result.Ex;
-                
+                result.Message = ex.InnerException.ToString();
+
             }
             return result;
         }

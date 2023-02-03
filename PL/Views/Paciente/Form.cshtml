@@ -9,149 +9,149 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            
-                @using (Html.BeginForm("Form", "Paciente", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.Id_Paciente, new { @class = "d-none" })
-                                @Html.TextBoxFor(model => model.Id_Paciente, new { @class = "d-none" })
-                                @Html.ValidationMessageFor(model => model.Id_Paciente)
 
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.Nombre)
-                                @Html.TextBoxFor(model => model.Nombre, new { @class = " form-control", @id = "txtNombre", @onkeypress = "return SoloLetras(event,'lblNombre')" })
-                                @Html.ValidationMessageFor(model => model.Nombre)
-                                @Html.Label("", null, new { @id = "lblNombre" })
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-
-
-                                @Html.LabelFor(model => model.ApellidoPaterno)
-                                @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @onkeypress = "return SoloLetras(event,'lblApellidoPaterno')" })
-                                @Html.ValidationMessageFor(model => model.ApellidoPaterno)
-                                @Html.Label("", null, new { @id = "lblApellidoPaterno" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.ApellidoMaterno)
-                                @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @onkeypress = "return SoloLetras(event,'lblApellidoMaterno')" })
-                                @Html.ValidationMessageFor(model => model.ApellidoMaterno)
-                                @Html.Label("", null, new { @id = "lblApellidoMaterno" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.FechaNacimiento)
-                                @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control", @id = "txtFechaNacimiento" })
-                                @Html.ValidationMessageFor(model => model.FechaNacimiento)
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.CURP)
-                                @Html.TextBoxFor(model => model.CURP, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.CURP)
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.NSS)
-                                @Html.TextBoxFor(model => model.NSS, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.NSS)
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.Sexo)
-                                @Html.RadioButtonFor(model => model.Sexo, "M", false)@Html.Label("Masculino")
-                                @Html.RadioButtonFor(model => model.Sexo, "F", false)@Html.Label("Femenino")
-
-                                @Html.ValidationMessageFor(model => model.Sexo)
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.Telefono)
-                                @Html.TextBoxFor(model => model.Telefono, new { @class = " form-control", @id = "txtTelefono", @onkeypress = "return SoloNumeros(event,'lblTelefono')" })
-                                @Html.ValidationMessageFor(model => model.Telefono)
-                                @Html.Label("", null, new { @id = "lblTelefono" })
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.Direccion)
-                                @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Direccion)
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.CodigoPostal)
-                                @Html.TextBoxFor(model => model.CodigoPostal, new { @class = "form-control", @id = "txtCodigoPostal", @onkeypress = "return SoloNumeros(event,'lblCodigoPostal')" })
-                                @Html.ValidationMessageFor(model => model.CodigoPostal)
-                                @Html.Label("", null, new { @id = "lblCodigoPostal" })
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-3">
-                                @Html.LabelFor(model => model.Diagnostico)
-                                @Html.TextBoxFor(model => model.Diagnostico, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Diagnostico)
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-md-3">
-
-                                <input type="submit" value="Guardar" class="btn btn-success" />
-
-                                <a href="@Url.Action("Index", "Home")">
-                                    <i class="bi bi-arrow-return-left"></i>
-                                </a>
-
-                            </div>
+            @using (Html.BeginForm("Form", "Paciente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Id_Paciente, new { @class = "d-none" })
+                            @Html.TextBoxFor(model => model.Id_Paciente, new { @class = "d-none" })
+                            @Html.ValidationMessageFor(model => model.Id_Paciente)
 
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Nombre)
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = " form-control", @id = "txtNombre", @onkeypress = "return SoloLetras(event,'lblNombre')" })
+                            @Html.ValidationMessageFor(model => model.Nombre)
+                            @Html.Label("", null, new { @id = "lblNombre" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
 
 
+                            @Html.LabelFor(model => model.ApellidoPaterno)
+                            @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @onkeypress = "return SoloLetras(event,'lblApellidoPaterno')" })
+                            @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+                            @Html.Label("", null, new { @id = "lblApellidoPaterno" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.ApellidoMaterno)
+                            @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @onkeypress = "return SoloLetras(event,'lblApellidoMaterno')" })
+                            @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+                            @Html.Label("", null, new { @id = "lblApellidoMaterno" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.FechaNacimiento)
+                            @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control", @id = "txtFechaNacimiento" })
+                            @Html.ValidationMessageFor(model => model.FechaNacimiento)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.CURP)
+                            @Html.TextBoxFor(model => model.CURP, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CURP)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.NSS)
+                            @Html.TextBoxFor(model => model.NSS, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.NSS)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Sexo)
+                            @Html.RadioButtonFor(model => model.Sexo, "M", false)@Html.Label("Masculino")
+                            @Html.RadioButtonFor(model => model.Sexo, "F", false)@Html.Label("Femenino")
+
+                            @Html.ValidationMessageFor(model => model.Sexo)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Telefono)
+                            @Html.TextBoxFor(model => model.Telefono, new { @class = " form-control", @id = "txtTelefono", @onkeypress = "return SoloNumeros(event,'lblTelefono')" })
+                            @Html.ValidationMessageFor(model => model.Telefono)
+                            @Html.Label("", null, new { @id = "lblTelefono" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Direccion)
+                            @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Direccion)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.CodigoPostal)
+                            @Html.TextBoxFor(model => model.CodigoPostal, new { @class = "form-control", @id = "txtCodigoPostal", @onkeypress = "return SoloNumeros(event,'lblCodigoPostal')" })
+                            @Html.ValidationMessageFor(model => model.CodigoPostal)
+                            @Html.Label("", null, new { @id = "lblCodigoPostal" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Diagnostico)
+                            @Html.TextBoxFor(model => model.Diagnostico, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Diagnostico)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-3">
+
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+
+                            <a href="@Url.Action("Index", "Home")">
+                                <i class="bi bi-arrow-return-left"></i>
+                            </a>
+
+                        </div>
 
                     </div>
 
-                }
 
 
-            </div>
+                </div>
+
+            }
+
 
         </div>
+
+    </div>
 
 </div>
 
@@ -202,16 +202,25 @@
 
     @*CALENDARIO*@
 
-    <script type="text/javascript">
-        $(function () {
-            $("#txtFechaNacimiento").datepicker({
-                dateFormat: 'dd-mm-yy',
-                changeMonth: true,
-                changeYear: true,
-                yearRange: "1930:2022"
+
+
+
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#txtFechaNacimiento").datepicker({
+                    dateFormat: 'dd-mm-yy',
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "1930:2022"
+                });
             });
-        });
-    </script>
+        </script>
 
 
-}
+    
+    }
