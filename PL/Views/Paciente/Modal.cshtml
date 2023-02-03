@@ -18,7 +18,11 @@
             </div>
             <div class="modal-footer">
 
-                @Html.ActionLink("Regresar", "GetAll", "Usuario", htmlAttributes: new { @class = "btn btn-danger" })
+                <<a href="@Url.Action("Index", "Home")">
+                    REGRESAR
+                    <i class="bi bi-arrow-return-left"></i>
+
+                </a>
             </div>
         </div>
     </div>

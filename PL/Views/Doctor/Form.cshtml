@@ -15,8 +15,8 @@
                 <div class="form-horizontal">
                     <div class="form-group">
                         <div class="col-md-3">
-                            @Html.LabelFor(model => model.Id_Doctor, new { @class = "hidden" })
-                            @Html.TextBoxFor(model => model.Id_Doctor, new { @class = "hidden form-control" })
+                            @Html.LabelFor(model => model.Id_Doctor, new { @class = "d-none" })
+                            @Html.TextBoxFor(model => model.Id_Doctor, new { @class = "d-none" })
                             @Html.ValidationMessageFor(model => model.Id_Doctor)
 
                         </div>
@@ -61,14 +61,61 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    @*<div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Fotografia)
+                                @Html.TextBoxFor(model => model.Fotografia, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Fotografia)
+
+                            </div>
+                        </div>*@
+
+                    @*<div class="form-group">
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.Fotografia)
-                            @Html.TextBoxFor(model => model.Fotografia, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Fotografia)
+                            <input id="file-upload" type="file" name="ImagenData" />
 
+                            @if (Model.Fotografia != null)
+                            {
+                                <img id="ImagenPreview" src="data:image/*" style=" height:150px; width:150px;  " />
+
+
+                            }
+                            else
+                            {
+                                <img id="ImagenPreview" src="~/Img/doctordefault.jpg" style=" height:150px; width:150px;  " />
+                            }
+
+                            @Html.ValidationMessageFor(model => model.Fotografia)
+                            <div id="file-preview-zone">
+
+                            </div>
                         </div>
+                        @Html.HiddenFor(model => model.Fotografia)
+
+                    </div>*@
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.Fotografia)
+                            <input type="file" name="ImagenData" onchange="Previsualizar(this);">
+                            @if (Model.Fotografia != null)
+                            {
+
+                                <img id="ImagenPreview" src="data:image/jpeg;base64,@Convert.ToByte(Model.Fotografia)" width="200" height="200" />
+                            }
+                            else
+                            {
+                                <img id="ImagenPreview" src="~/Img/doctordefault.jpg" style=" height:200px; width:200px;" />
+                            }
+                            @Html.ValidationMessageFor(model => model.Fotografia)
+                        </div>
+                        @Html.HiddenFor(model => model.Fotografia)
+
+
+
                     </div>
+
 
                     <div class="form-group">
                         <div class="col-md-3">
@@ -85,8 +132,10 @@
                         <div class="col-md-3">
 
                             <input type="submit" value="Guardar" class="btn btn-success" />
+                            <a href="@Url.Action("Index", "Home")">
+                                <i class="bi bi-arrow-return-left"></i>
+                            </a>
 
-                            @Html.ActionLink("Regresar", "GetAll", "Doctor", htmlAttributes: new { @class = "btn btn-danger" })
 
                         </div>
 
@@ -103,3 +152,87 @@
     </div>
 
 </div>
+
+
+@*IMAGEN FORMA 1*@
+@*<script>
+
+        function readFile(input) {
+
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+
+
+                reader.onload = function (e) {
+
+                    var filePreview = document.createElement('img');
+
+                    filePreview.id = 'file-preview';
+
+                    //e.target.result contents the base64 data from the image uploaded
+
+                    filePreview.src = e.target.result;
+
+                    console.log(e.target.result);
+
+
+
+                    var previewZone = document.getElementById('file-preview-zone');
+
+                    previewZone.appendChild(filePreview);
+
+                }
+
+
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+        }
+
+
+
+        var fileUpload = document.getElementById('file-upload');
+
+        fileUpload.onchange = function (e) {
+
+            readFile(e.srcElement);
+
+        }
+
+
+
+    </script>*@
+
+@*IMAGEN FORMA 2*@
+
+<script>
+        function readURL(input)
+        {
+            if (input.files && input.files[0])
+            {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('ImagenPreview').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+        }
+    </script>
+
+<script type="text/javascript">
+    function Previsualizar(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#ImagenPreview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

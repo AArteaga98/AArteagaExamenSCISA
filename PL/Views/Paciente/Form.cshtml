@@ -15,8 +15,8 @@
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-md-3">
-                                @Html.LabelFor(model => model.Id_Paciente, new { @class = "hidden" })
-                                @Html.TextBoxFor(model => model.Id_Paciente, new { @class = "hidden form-control" })
+                                @Html.LabelFor(model => model.Id_Paciente, new { @class = "d-none" })
+                                @Html.TextBoxFor(model => model.Id_Paciente, new { @class = "d-none" })
                                 @Html.ValidationMessageFor(model => model.Id_Paciente)
 
                             </div>
@@ -134,7 +134,9 @@
 
                                 <input type="submit" value="Guardar" class="btn btn-success" />
 
-                                @Html.ActionLink("Regresar", "GetAll", "Empresa", htmlAttributes: new { @class = "btn btn-danger" })
+                                <a href="@Url.Action("Index", "Home")">
+                                    <i class="bi bi-arrow-return-left"></i>
+                                </a>
 
                             </div>
 
@@ -145,6 +147,7 @@
                     </div>
 
                 }
+
 
             </div>
 

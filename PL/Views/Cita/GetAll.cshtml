@@ -54,7 +54,7 @@
                 {
                     <tr>
 
-                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Cita", new { Id_Cita = cita.Id_Cita })"><i class="bi bi-pencil-square" style="color: ivory"></i></a></td>
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Cita", new { Id_Cita = cita.Id_Cita })"><span class="glyphicon glyphicon-pencil" style="color: ivory"></span></a></td>
                         <td style="display :none;">@cita.Id_Cita </td>
                         <td> <center>@cita.FechaCita </center></td>
                         <td> <center>@cita.HoraCita </center></td>
@@ -63,7 +63,7 @@
                         <td style="display :none;">@cita.Paciente.Id_Paciente </td>
                         <td> <center>@cita.Paciente.Nombre  @cita.Paciente.ApellidoMaterno </center></td>
 
-                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Cita", new { Id_Cita = cita.Id_Cita})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Cita", new { Id_Cita = cita.Id_Cita})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><span class="glyphicon glyphicon-pencil" style="color: ivory"></span></a></td>
                     </tr>
                 }
 

@@ -1,5 +1,5 @@
-﻿@model ML.Paciente
-
+﻿
+@model ML.Hospital
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,9 +70,9 @@
                     <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal0">
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white">
-                                <a href="@Url.Action("GetAll", "Paciente")">
+                                @*<a href="@Url.Action("GetAll", "Paciente")">
                                     <i class="fas fa-plus fa-3x"> </i>
-                                </a>
+                                </a>*@
                             </div>
                         </div><img class="img-fluid" src="~/assets/img/portfolio/Pac.png" alt="Log Cabin" />
                     </div>
@@ -82,9 +82,9 @@
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white">
 
-                                <a href="@Url.Action("GetAll", "Doctor")">
+                                @*<a href="@Url.Action("GetAll", "Doctor")">
                                     <i class="fas fa-plus fa-3x"> </i>
-                                </a>
+                                </a>*@
                             </div>
 
                         </div><img class="img-fluid" src="~/assets/img/portfolio/Doc.png" alt="Tasty Cake" />
@@ -95,9 +95,9 @@
                     <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white">
-                                <a href="@Url.Action("GetAll", "Cita")">
+                                @*<a href="@Url.Action("GetAll", "Cita")">
                                     <i class="fas fa-plus fa-3x"> </i>
-                                </a>
+                                </a>*@
                             </div>
                         </div><img class="img-fluid" src="~/assets/img/portfolio/Cita.png" alt="Circus Tent" />
                     </div>
@@ -126,26 +126,29 @@
                                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                     <div class="divider-custom-line"></div>
                                 </div>
-                                <!-- Portfolio Modal - Image--><!--<img class="img-fluid rounded mb-5" src="~/assets/img/portfolio/Pac.png" alt="Log Cabin" />-->
+                                <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5" src="~/assets/img/portfolio/Pac.png" alt="Tasty Cake" />
                                 <!-- Portfolio Modal - Text-->
-                                <!--<p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>-->
-                                @*//Modalcrud*@
-                                @*<div class="container">
+
+                                <div class="container">
                                     <h2>Paciente</h2>
 
                                     <div class="row">
                                         <div style="float:left">
-                                            @Html.ActionLink("Agregar Paciente", "Form", "Paceinte", htmlAttributes: new { @class = "btn btn-success" })
+
+                                            <a href="@Url.Action("Form", "Paciente")">
+                                               <i class="fas fa-plus fa-3x"> </i>
+                                            </a>
+                                            @*@Html.ActionLink("Agregar Paciente", "Form", "Paceinte", htmlAttributes: new { @class = "btn btn-success" })*@
                                         </div>
                                     </div>
                                     <hr />
                                     <div class="row">
-                                        <table class="table table-responsive">
+                                        <table class="table table-responsive" id="tblPaciente">
                                             <thead>
                                                 <tr>
 
                                                     <th> <center>Editar </center></th>
-
+                                                    <th class="hidden"> <center>Id Paciente </center></th>
                                                     <th> <center>Nombre </center></th>
                                                     <th> <center>Feccha de Nacimiento </center></th>
                                                     <th> <center>CURP </center></th>
@@ -155,17 +158,18 @@
                                                     <th> <center>Direccion </center></th>
                                                     <th> <center>Codigo Postal </center></th>
                                                     <th> <center>Diagnostico </center></th>
+                                                    <th> <center>Eliminar </center></th>
 
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (ML.Paciente paciente in Model.Pacientes)
+                                                @foreach (ML.Paciente paciente in Model.Paciente.Pacientes)
                                                 {
                                                     <tr>
 
-                                                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Paciente", new { Id_Paciente = paciente.Id_Paciente })"><i class="bi bi-pencil-square" style="color: ivory"></i></a></td>
-                                                        <td style="display :none;">@paciente.Id_Paciente </td>
+                                                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Paciente", new { Id_Paciente = paciente.Id_Paciente })"><i class="bi bi-pencil-square"></i></a></td>
+                                                        <td>@paciente.Id_Paciente </td>
                                                         <td> <center>@paciente.Nombre @paciente.ApellidoPaterno @paciente.ApellidoMaterno </center></td>
                                                         <td> <center>@paciente.FechaNacimiento </center></td>
                                                         <td> <center>@paciente.CURP </center></td>
@@ -177,15 +181,15 @@
                                                         <td> <center>@paciente.Diagnostico </center></td>
 
 
-                                                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Paciente", new { Id_Paciente= paciente.Id_Paciente})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+                                                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Paciente", new { Id_Paciente= paciente.Id_Paciente})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-trash"></i></a></td>
                                                     </tr>
                                                 }
 
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>*@
-                                 @*finmodal*@
+                                </div>
+
 
                                 <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
                             </div>
@@ -195,14 +199,15 @@
             </div>
         </div>
     </div>
+
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-labelledby="#portfolioModal1Label" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
+            <div class="modal-content modal-xl">
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
                 <div class="modal-body text-center">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-lg-8">
+                            <div class="col-lg-10">
                                 <!-- Portfolio Modal - Title-->
                                 <h2 class="portfolio-modal-title text-secondary mb-0">Doctor</h2>
                                 <!-- Icon Divider-->
@@ -213,7 +218,81 @@
                                 </div>
                                 <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5" src="~/assets/img/portfolio/Doc.png" alt="Tasty Cake" />
                                 <!-- Portfolio Modal - Text-->
-                                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                               
+
+                                <div class="container">
+                                    <h2>Doctores</h2>
+                                    <div class="row">
+                                        <div style="float:left">
+                                            <a href="@Url.Action("Form", "Doctor")">
+                                                <i class="fas fa-plus fa-3x"> </i>
+                                            </a>
+                                            @*@Html.ActionLink("Agregar Doctor", "Form", "Doctor", htmlAttributes: new { @class = "btn btn-success" })*@
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <table class="table table-responsive" id="tblDoctor">
+                                            <thead>
+                                                <tr>
+
+                                                    <th> <center>Editar </center></th>
+
+
+                                                    <th> <center>Id Doctor </center></th>
+                                                    <th> <center>Nombre </center></th>
+                                                    <th> <center>Fotografia </center></th>
+                                                    <th> <center>Cedula </center></th>
+                                                    <th class="hidden"> <center>Id Especialidad </center></th>
+                                                    <th> <center>Especialidad </center></th>
+                                                    <th> <center>Eliminar </center></th>
+
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (ML.Doctor doctor in Model.Doctor.Doctores)
+                                                {
+                                                    <tr>
+
+                                                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Doctor", new { Id_Doctor = doctor.Id_Doctor })"><i class="bi bi-pencil-square"></i></a></td>
+                                                        <td><center>@doctor.Id_Doctor </center></td>
+                                                        <td> <center>@doctor.Nombre  @doctor.ApellidoPaterno @doctor.ApellidoMaterno   </center></td>
+                                                        @*<td> <center>@doctor.Fotografia </center></td>*@
+                                                        <td>
+                                                            @if (doctor.Fotografia != null)
+                                                            {
+                                                                <img  src="data:image/*;base64,@doctor.Fotografia" width="50" height="50" />
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <img id="ImagenPreview" src="~/Img/doctordefault.jpg" style=" height:50px; width:50px;" />
+                                                            }
+
+                                                        </td>
+                                                        <td> <center>@doctor.Cedula </center></td>
+                                                        <td class="hidden"> <center>@doctor.Especialidad.Id_Especialidad </center></td>
+                                                        <td> <center>@doctor.Especialidad.Descripcion </center></td>
+
+
+
+
+
+                                                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Doctor", new { Id_Doctor= doctor.Id_Doctor})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-trash"></i></a></td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+
+
+
                                 <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
                             </div>
                         </div>
@@ -222,6 +301,9 @@
             </div>
         </div>
     </div>
+
+
+
     <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-labelledby="#portfolioModal2Label" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
@@ -240,34 +322,60 @@
                                 </div>
                                 <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5" src="~/assets/img/portfolio/Cita.png" alt="Circus Tent" />
                                 <!-- Portfolio Modal - Text-->
-                                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-labelledby="#portfolioModal3Label" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-                <div class="modal-body text-center">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary mb-0">Controller</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
+                                <div class="container">
+                                    <h2>Citas</h2>
+                                    <div class="row">
+                                        <div style="float:left">
+
+                                            <a href="@Url.Action("Form", "Cita")">
+                                                <i class="fas fa-plus fa-3x"> </i>
+                                            </a>
+
+                                            @*  @Html.ActionLink("Agregar Cita", "Form", "Cita", htmlAttributes: new { @class = "btn btn-success" })*@
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <table class="table table-responsive" id="tblCita">
+                                            <thead>
+                                                <tr>
+
+                                                    <th> <center>Editar </center></th>
+                                                    <th class="hidden"> <center>Id Cita </center></th>
+                                                    <th> <center>Fecha Cita </center></th>
+                                                    <th> <center>Hora Cita </center></th>
+                                                    <th class="hidden"> <center>IdMedico </center></th>
+                                                    <th> <center>Medico </center></th>
+                                                    <th class="hidden"> <center>Id Paciente </center></th>
+                                                    <th> <center>Paciente </center></th>
+                                                    <th> <center>Eliminar </center></th>
+
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (ML.Cita cita in Model.Cita.Citas)
+                                                {
+                                                    <tr>
+
+                                                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Cita", new { Id_Cita = cita.Id_Cita })"><i class="bi bi-pencil-square"></i></a></td>
+                                                        <td >@cita.Id_Cita </td>
+                                                        <td> <center>@cita.FechaCita </center></td>
+                                                        <td> <center>@cita.HoraCita </center></td>
+                                                        <td>@cita.Doctor.Id_Doctor </td>
+                                                        <td> <center>@cita.Doctor.Nombre  @cita.Doctor.ApellidoPaterno </center></td>
+                                                        <td>@cita.Paciente.Id_Paciente </td>
+                                                        <td> <center>@cita.Paciente.Nombre  @cita.Paciente.ApellidoMaterno </center></td>
+
+                                                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Cita", new { Id_Cita = cita.Id_Cita})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-trash"></i></a></td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="Controller" />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
                                 <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
                             </div>
                         </div>
@@ -276,60 +384,7 @@
             </div>
         </div>
     </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-labelledby="#portfolioModal4Label" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-                <div class="modal-body text-center">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary mb-0">Locked Safe</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="Locked Safe" />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-labelledby="#portfolioModal5Label" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-                <div class="modal-body text-center">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary mb-0">Submarine</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png" alt="Submarine" />
-                                <!-- Portfolio Modal - Text-->
-                                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <section class="page-section bg-primary text-white mb-0" id="about">
         <div class="container">
             <!-- About Section Heading-->
@@ -377,7 +432,7 @@
                 <div class="col-lg-4">
                     <div class="d-flex flex-column align-items-center">
                         <div class="icon-contact mb-3"><i class="far fa-envelope"></i></div>
-                        <div class="text-muted">Email</div><a class="lead font-weight-bold" href="mailto:name@example.com">name@example.com</a>
+                        <div class="text-muted">Email</div><a class="lead font-weight-bold" href="mailto:aarteaga@gmail.com">aarteaga@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -418,6 +473,78 @@
     <script src="assets/mail/jqBootstrapValidation.js"></script>
     <script src="assets/mail/contact_me.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="~/js/scripts.js"></script>
 </body>
 </html>
+
+
+@section Scripts
+                                 {
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.material.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tblDoctor').DataTable({
+                searching: false,
+                "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+                autoWidth: false,
+                columnDefs: [
+                    {
+                        targets: ['_all'],
+                        className: 'mdc-data-table__cell',
+                    },
+                ],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                },
+            });
+        });
+
+        $(document).ready(function () {
+            $('#tblPaciente').DataTable({
+                searching: false,
+                "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+                autoWidth: false,
+                columnDefs: [
+                    {
+                        targets: ['_all'],
+                        className: 'mdc-data-table__cell',
+                    },
+                ],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                },
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('#tblCita').DataTable({
+                searching: false,
+                "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+                autoWidth: false,
+                columnDefs: [
+                    {
+                        targets: ['_all'],
+                        className: 'mdc-data-table__cell',
+                    },
+                ],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                },
+            });
+        });
+
+
+
+
+
+
+    </script>
+
+
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ namespace ML
     {
         public int Id_Paciente { get; set; }
         public string Nombre { get; set; }
+        [DisplayName("Apellido Paterno")]
         public string ApellidoPaterno { get; set; }
+        [DisplayName("Apellido Materno")]
         public string ApellidoMaterno { get; set; }
         public string NombreCompleto { get; set; }
         public string FechaNacimiento { get; set; }

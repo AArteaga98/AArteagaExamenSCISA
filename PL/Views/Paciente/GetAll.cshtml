@@ -72,7 +72,7 @@
                         <td> <center>@paciente.Diagnostico </center></td>
 
 
-                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Paciente", new { Id_Paciente= paciente.Id_Paciente})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Paciente", new { Id_Paciente= paciente.Id_Paciente})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><span class="glyphicon glyphicon-trash"></span></a></td>
                     </tr>
                 }
 

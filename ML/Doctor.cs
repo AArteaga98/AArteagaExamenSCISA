@@ -14,6 +14,7 @@ namespace ML
         public string ApellidoMaterno { get; set; }
         public string NombreCompleto { get; set; }
         public string Fotografia { get; set; }
+        //public byte[] Fotografia { get; set; }
         public string Cedula { get; set; }
         public List<object> Doctores { get; set; }
         public ML.Especialidad Especialidad { get; set;}

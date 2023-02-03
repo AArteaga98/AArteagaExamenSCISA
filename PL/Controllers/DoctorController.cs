@@ -72,9 +72,22 @@ namespace PL.Controllers
         //AGREGAR
         public ActionResult Form(ML.Doctor doctor)
         {
+            //foto
+            HttpPostedFileBase file = Request.Files["ImagenData"];
+            if (file.ContentLength > 0)
+            {
+                byte[] ImageByte = ConvertToBytes(file);
+                doctor.Fotografia = Convert.ToBase64String(ImageByte);
+            }
+
+
             if (doctor.Id_Doctor==0)
             {
+                
                 ML.Result result = BL.Doctor.Add(doctor);
+
+              
+
 
                 if (result.Correct)
                 {
@@ -114,6 +127,15 @@ namespace PL.Controllers
                 ViewBag.Message = "ERROR: " + result.Message;
             }
             return PartialView("Modal");
+        }
+
+
+        public static byte[] ConvertToBytes(HttpPostedFileBase Fotografia)
+        {
+            byte[] data = null;
+            System.IO.BinaryReader reader = new System.IO.BinaryReader(Fotografia.InputStream);
+            data = reader.ReadBytes((int)Fotografia.ContentLength);
+            return data;
         }
 
 

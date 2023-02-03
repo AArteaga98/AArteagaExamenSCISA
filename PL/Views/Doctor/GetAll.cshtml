@@ -4,26 +4,6 @@
     ViewBag.Title = "GetAll";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-<div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        @Html.ActionLink("INICIO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-    </div>
-<div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("Paciente", "GetAll", "Paciente")</li>
-        <li>@Html.ActionLink("Cita", "GetAll", "Cita")</li>
-    </ul>
-</div>
-</div>
-</div>
-
-
 
 <div class="container">
     <h2>Doctores</h2>
@@ -34,7 +14,7 @@
     </div>
     <hr />
     <div class="row">
-        <table class="table table-responsive">
+        <table class="table table-responsive" id="tblDoctor">
             <thead>
                 <tr>
 
@@ -45,6 +25,7 @@
                     <th> <center>Nombre </center></th>
                     <th> <center>Fotografia </center></th>
                     <th> <center>Cedula </center></th>
+                    <th class="hidden"> <center>Id Especialidad </center></th>
                     <th> <center>Especialidad </center></th>
                     <th> <center>Eliminar </center></th>
 
@@ -60,29 +41,28 @@
                         <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Doctor", new { Id_Doctor = doctor.Id_Doctor })"><span class="glyphicon glyphicon-pencil" style="color: ivory"></span></a></td>
                         <td><center>@doctor.Id_Doctor </center></td>
                         <td> <center>@doctor.Nombre  @doctor.ApellidoPaterno @doctor.ApellidoMaterno   </center></td>
-                        <td> <center>@doctor.Fotografia </center></td>
+                        @*<td> <center>@doctor.Fotografia </center></td>*@
+                        <td>
+                            @if (doctor.Fotografia == null)
+                            {
+                                <img id="Img" src="data:image/jpeg;base64;@doctor.Fotografia" width="50" height="50" />
+
+                            }
+                            else
+                            {
+                                <img id="ImagenPreview" src="~/Img/doctordefault.jpg"  style=" height:50px; width:50px;" />
+                            }
+
+                        </td>
                         <td> <center>@doctor.Cedula </center></td>
                         <td class="hidden"> <center>@doctor.Especialidad.Id_Especialidad </center></td>
                         <td> <center>@doctor.Especialidad.Descripcion </center></td>
 
-                        @*<td>
-                                <center>
-
-                                    @if (doctor.Fotografia != null)
-                                    {
-
-                                        <img id="Img" src="data:image/*;base64,@doctor.Fotografia" style="width:150px ; height:150px" />
-
-                                    }
-                                    else
-                                    {
-                                        <img id="Img" src="~/App_Data/UserDefault.png" style="width:100px ; height:100px" />
-                                    }
-                                </center>
-                            </td>*@
 
 
-                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Doctor", new { Id_Doctor= doctor.Id_Doctor})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+
+
+                        <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Doctor", new { Id_Doctor= doctor.Id_Doctor})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><span class="glyphicon glyphicon-pencil" style="color: ivory"></span></a></td>
                     </tr>
                 }
 
@@ -91,6 +71,37 @@
     </div>
 
 </div>
+
+@section Scripts
+    {
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.material.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tblDoctor').DataTable({
+                searching: false,
+                "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+                autoWidth: false,
+                columnDefs: [
+                    {
+                        targets: ['_all'],
+                        className: 'mdc-data-table__cell',
+                    },
+                ],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                },
+            });
+        });
+    </script>
+
+
+}
+
 
 
 

@@ -8,6 +8,8 @@ namespace ML
 {
     public class Cita
     {
+
+        
         public int Id_Cita { get; set; }
        public string FechaCita { get; set; }
        public string HoraCita { get; set; }
