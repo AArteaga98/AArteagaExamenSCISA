@@ -117,7 +117,7 @@
                 <div class="modal-body text-center">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <!-- Portfolio Modal - Title-->
                                 <h2 class="portfolio-modal-title text-secondary mb-0">Paciente</h2>
                                 <!-- Icon Divider-->
@@ -148,7 +148,7 @@
                                                 <tr>
 
                                                     <th> <center>Editar </center></th>
-                                                    <th class="hidden"> <center>Id Paciente </center></th>
+                                                    <th style="display:none"> <center>Id Paciente </center></th>
                                                     <th> <center>Nombre </center></th>
                                                     <th> <center>Feccha de Nacimiento </center></th>
                                                     <th> <center>CURP </center></th>
@@ -169,7 +169,7 @@
                                                     <tr>
 
                                                         <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Paciente", new { Id_Paciente = paciente.Id_Paciente })"><i class="bi bi-pencil-square"></i></a></td>
-                                                        <td>@paciente.Id_Paciente </td>
+                                                        <td style="display:none">@paciente.Id_Paciente </td>
                                                         <td> <center>@paciente.Nombre @paciente.ApellidoPaterno @paciente.ApellidoMaterno </center></td>
                                                         <td> <center>@paciente.FechaNacimiento </center></td>
                                                         <td> <center>@paciente.CURP </center></td>
@@ -239,11 +239,11 @@
                                                     <th> <center>Editar </center></th>
 
 
-                                                    <th> <center>Id Doctor </center></th>
+                                                    <th style="display:none"> <center>Id Doctor </center></th>
                                                     <th> <center>Nombre </center></th>
                                                     <th> <center>Fotografia </center></th>
                                                     <th> <center>Cedula </center></th>
-                                                    <th class="hidden"> <center>Id Especialidad </center></th>
+                                                    <th style="display:none"> <center>Id Especialidad </center></th>
                                                     <th> <center>Especialidad </center></th>
                                                     <th> <center>Eliminar </center></th>
 
@@ -257,7 +257,7 @@
                                                     <tr>
 
                                                         <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Doctor", new { Id_Doctor = doctor.Id_Doctor })"><i class="bi bi-pencil-square"></i></a></td>
-                                                        <td><center>@doctor.Id_Doctor </center></td>
+                                                        <td style="display:none"><center>@doctor.Id_Doctor </center></td>
                                                         <td> <center>@doctor.Nombre  @doctor.ApellidoPaterno @doctor.ApellidoMaterno   </center></td>
                                                         @*<td> <center>@doctor.Fotografia </center></td>*@
                                                         <td>
@@ -273,7 +273,7 @@
 
                                                         </td>
                                                         <td> <center>@doctor.Cedula </center></td>
-                                                        <td class="hidden"> <center>@doctor.Especialidad.Id_Especialidad </center></td>
+                                                        <td  style="display:none"> <center>@doctor.Especialidad.Id_Especialidad </center></td>
                                                         <td> <center>@doctor.Especialidad.Descripcion </center></td>
 
 
@@ -341,12 +341,12 @@
                                                 <tr>
 
                                                     <th> <center>Editar </center></th>
-                                                    <th class="hidden"> <center>Id Cita </center></th>
+                                                    <th style="display:none"> <center>Id Cita </center></th>
                                                     <th> <center>Fecha Cita </center></th>
                                                     <th> <center>Hora Cita </center></th>
-                                                    <th class="hidden"> <center>IdMedico </center></th>
+                                                    <th  style="display:none"> <center>IdMedico </center></th>
                                                     <th> <center>Medico </center></th>
-                                                    <th class="hidden"> <center>Id Paciente </center></th>
+                                                    <th  style="display:none"> <center>Id Paciente </center></th>
                                                     <th> <center>Paciente </center></th>
                                                     <th> <center>Eliminar </center></th>
 
@@ -360,12 +360,12 @@
                                                     <tr>
 
                                                         <td style="text-align: center; vertical-align: middle;"><a class="btn btn-warning" href="@Url.Action("Form", "Cita", new { Id_Cita = cita.Id_Cita })"><i class="bi bi-pencil-square"></i></a></td>
-                                                        <td >@cita.Id_Cita </td>
+                                                        <td  style="display:none">@cita.Id_Cita </td>
                                                         <td> <center>@cita.FechaCita </center></td>
                                                         <td> <center>@cita.HoraCita </center></td>
-                                                        <td>@cita.Doctor.Id_Doctor </td>
+                                                        <td  style="display:none">@cita.Doctor.Id_Doctor </td>
                                                         <td> <center>@cita.Doctor.Nombre  @cita.Doctor.ApellidoPaterno </center></td>
-                                                        <td>@cita.Paciente.Id_Paciente </td>
+                                                        <td style="display:none">@cita.Paciente.Id_Paciente </td>
                                                         <td> <center>@cita.Paciente.Nombre  @cita.Paciente.ApellidoMaterno </center></td>
 
                                                         <td style="text-align: center; vertical-align: middle;"><a class="btn btn-danger" href="@Url.Action("Delete", "Cita", new { Id_Cita = cita.Id_Cita})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-trash"></i></a></td>
@@ -438,29 +438,7 @@
             </div>
         </div>
     </section>
-    <footer class="footer text-center">
-        <div class="container">
-            <div class="row">
-                <!-- Footer Location-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="mb-4">LOCATION</h4>
-                    <p class="pre-wrap lead mb-0">Monterrey,México.</p>
-                </div>
 
-                <!-- Footer About Text-->
-                <div class="col-lg-4">
-                    <h4 class="mb-4">Informacíon </h4>
-                    <p class="pre-wrap lead mb-0">CRUD Doctores</p>
-                    <p class="pre-wrap lead mb-0">CRUD Pacientes</p>
-                    <p class="pre-wrap lead mb-0">CRUD Citas</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Copyright Section-->
-    <section class="copyright py-4 text-center text-white">
-        <div class="container"><small class="pre-wrap">Copyright © Your Website 2020</small></div>
-    </section>
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
     <div class="scroll-to-top d-lg-none position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
     <!-- Bootstrap core JS-->
