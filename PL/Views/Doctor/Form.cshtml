@@ -66,14 +66,16 @@
                         <div class="col-md-4">
                             @Html.LabelFor(model => model.Fotografia)
                             <input type="file" name="ImagenData" onchange="Previsualizar(this);">
+
                             @if (Model.Fotografia != null)
                             {
+                                <img id="ImagenData" src="data:image/jpeg;base64,@Model.Fotografia" width="200" height="200" />
 
-                                <img id="ImagenPreview" src="data:image/jpeg;base64,@Convert.ToByte(Model.Fotografia)" width="200" height="200" />
+
                             }
                             else
                             {
-                                <img id="ImagenPreview" src="~/Img/doctordefault.jpg" style=" height:200px; width:200px;" />
+                                <img id="ImagenData" src="~/Img/doctordefault.jpg" style=" height:200px; width:200px;" />
                             }
                             @Html.ValidationMessageFor(model => model.Fotografia)
                         </div>
